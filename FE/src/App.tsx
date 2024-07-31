@@ -31,7 +31,6 @@ function App() {
           <Route path="/admin/products" element={<ProductTable />} />
           <Route path="/admin/product-add" element={<ProductForm />} />
           <Route path="/admin/product-edit/:id" element={<ProductForm />} />
-
           <Route path="/admin/categories" element={<CategoryTable />} />
           <Route path="/admin/category-add" element={<CategoryForm />} />
           <Route path="/admin/category-edit/:id" element={<ProductForm />} />

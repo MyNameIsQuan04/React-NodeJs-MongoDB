@@ -5,6 +5,8 @@ const productSchema = z.object({
   price: z.number().nonnegative("Price must be a positive number"),
   description: z.string().optional(),
   thumbnail: z.any().optional(),
+  stock: z.number().nonnegative("Stock must be a positive number"),
+  rate: z.number().nonnegative("Rate must be a positive number"),
 });
 
 export default productSchema;

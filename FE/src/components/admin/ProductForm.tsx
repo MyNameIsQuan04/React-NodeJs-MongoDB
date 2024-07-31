@@ -122,7 +122,7 @@ const ProductForm = () => {
               <option
                 key={category._id}
                 value={category._id}
-                selected={cateSelected._id === category._id}
+                // selected={cateSelected._id === category._id}
               >
                 {category.name}
               </option>
