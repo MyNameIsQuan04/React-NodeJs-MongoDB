@@ -28,7 +28,7 @@ const AuthForm = ({ isRegister }: Props) => {
           email: user.email,
           password: user.password,
         });
-        alert(`Register success with email: ${data.email}`);
+        alert(`Register success with email: ${data.data.email}`);
         nav("/login");
       } else {
         const { data } = await instance.post("/auth/login", user);

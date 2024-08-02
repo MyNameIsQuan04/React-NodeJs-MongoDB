@@ -22,7 +22,7 @@ const ProductDetail = () => {
   };
 
   const handleAddToCart = () => {
-    addToCart(product._id, quantity);
+    addToCart(product._id as string, quantity);
     alert("Added to cart successfully");
   };
 

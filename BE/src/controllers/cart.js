@@ -8,8 +8,6 @@ export const addToCart = async (req, res, next) => {
     const product = await Product.findById(productId);
     if (!product) return res.status(404).json({ message: "Product not found" });
     console.log(req.user._id);
-    console.log(111);
-
     let cart = await Cart.findOne({ userId: req.user._id });
 
     // Nếu chưa có giỏ hàng nào của user này, tạo mới giỏ hàng
