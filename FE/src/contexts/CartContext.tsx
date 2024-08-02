@@ -8,8 +8,9 @@ export type CartContextType = {
     products: { product: Product; quantity: number }[];
     totalPrice: number;
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   dispatch: React.Dispatch<any>;
-  addToCart: (product: Product, quantity: number) => void;
+  addToCart: (productId: string, quantity: number) => void;
   getCart: () => void;
   checkout: () => void;
   removeFromCart: (productId: string) => void;
@@ -24,12 +25,13 @@ const CartContext = createContext({} as CartContextType);
 
 const CartProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(cartReducer, initialState);
-  const addToCart = async (product: Product, quantity: number) => {
-    const res = await instance.post("/cart", { product, quantity });
-    dispatch({
-      type: "ADD_TO_CART",
-      payload: { product: res.data.product, quantity },
-    });
+  const addToCart = async (productId: string, quantity: number) => {
+    const res = await instance.post("/cart", { productId, quantity });
+    res.data.success &&
+      dispatch({
+        type: "ADD_TO_CART",
+        payload: { productId, quantity },
+      });
   };
   const getCart = async () => {
     const res = await instance.get("/cart");

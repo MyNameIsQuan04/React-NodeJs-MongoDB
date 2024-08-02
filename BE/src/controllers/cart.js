@@ -7,12 +7,14 @@ export const addToCart = async (req, res, next) => {
     const { productId, quantity } = req.body;
     const product = await Product.findById(productId);
     if (!product) return res.status(404).json({ message: "Product not found" });
-    console.log(req.userId);
-    let cart = await Cart.findOne({ userId: req.userId });
+    console.log(req.user._id);
+    console.log(111);
+
+    let cart = await Cart.findOne({ userId: req.user._id });
 
     // Nếu chưa có giỏ hàng nào của user này, tạo mới giỏ hàng
     if (!cart)
-      cart = new Cart({ userId: req.userId, products: [], totalPrice: 0 });
+      cart = new Cart({ userId: req.user._id, products: [], totalPrice: 0 });
 
     const findIndex = cart.products.findIndex(
       (p) => p.product.toString() === productId

@@ -6,6 +6,7 @@ import productReducer from "../reducers/productReducer";
 
 export type ProductContextType = {
   state: { products: Product[] };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   dispatch: React.Dispatch<any>;
   handleProduct: (product: Product) => void;
   handleRemove: (id: string) => void;

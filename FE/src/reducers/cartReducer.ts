@@ -11,7 +11,10 @@ type State = {
 };
 
 type CartAction =
-  | { type: "ADD_TO_CART"; payload: { product: Product; quantity: number } }
+  | {
+      type: "ADD_TO_CART";
+      payload: { productId: string; quantity: number };
+    }
   | { type: "REMOVE_FROM_CART"; payload: { productId: string } }
   | { type: "SET_CART"; payload: { products: CartItem[]; totalPrice: number } }
   | { type: "CHECKOUT"; payload: { products: CartItem[]; totalPrice: number } };
@@ -21,13 +24,10 @@ const cartReducer = (state: State, action: CartAction) => {
     case "ADD_TO_CART":
       return {
         ...state,
-        products: [
-          ...state.products,
-          {
-            product: action.payload.product,
-            quantity: action.payload.quantity,
-          },
-        ],
+        products: state.products.filter(
+          (item) => item.product._id !== action.payload.productId
+        ),
+        quantity: action.payload.quantity,
       };
 
     case "REMOVE_FROM_CART":
